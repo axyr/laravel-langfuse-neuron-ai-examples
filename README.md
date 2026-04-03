@@ -143,3 +143,7 @@ This repository demonstrates Neuron AI integration with Langfuse. If you're look
    - Neuron AI: `config/neuron.php` + `LANGFUSE_NEURON_AI_ENABLED`
 
 Both approaches work seamlessly with the laravel-langfuse package for automatic tracing and observability!
+
+## Author
+
+Built by [Martijn van Nieuwenhoven](https://martijnvannieuwenhoven.com) - Laravel developer specializing in AI integrations and observability tooling.
