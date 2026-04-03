@@ -6,11 +6,12 @@ namespace App\Ai\Tools;
 
 use NeuronAI\Tools\PropertyType;
 use NeuronAI\Tools\Tool;
+use NeuronAI\Tools\ToolInterface;
 use NeuronAI\Tools\ToolProperty;
 
 class SearchWeb
 {
-    public static function make(): Tool
+    public static function make(): ToolInterface
     {
         return Tool::make(
             'search_web',

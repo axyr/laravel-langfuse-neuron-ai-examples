@@ -6,11 +6,12 @@ namespace App\Ai\Tools;
 
 use NeuronAI\Tools\PropertyType;
 use NeuronAI\Tools\Tool;
+use NeuronAI\Tools\ToolInterface;
 use NeuronAI\Tools\ToolProperty;
 
 class Calculator
 {
-    public static function make(): Tool
+    public static function make(): ToolInterface
     {
         return Tool::make(
             'calculator',
@@ -25,14 +26,10 @@ class Calculator
                 ),
             )
             ->setCallable(function (?string $expression): string {
-                if ($expression === null || $expression === '') {
-                    return json_encode(['error' => 'Invalid expression', 'expression' => $expression], JSON_THROW_ON_ERROR);
-                }
+                // Validate input
+                $sanitized = $expression ? preg_replace('/[^0-9+\-*\/().%\s]/', '', $expression) : null;
 
-                // Simple safe evaluation for basic math
-                $sanitized = preg_replace('/[^0-9+\-*\/().%\s]/', '', $expression);
-
-                if ($sanitized === '' || $sanitized === null) {
+                if (! $sanitized) {
                     return json_encode(['error' => 'Invalid expression', 'expression' => $expression], JSON_THROW_ON_ERROR);
                 }
 

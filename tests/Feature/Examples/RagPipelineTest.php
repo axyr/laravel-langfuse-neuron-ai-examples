@@ -2,12 +2,14 @@
 
 declare(strict_types=1);
 
-use App\Ai\Agents\RagAnswerer;
 use Axyr\Langfuse\LangfuseFacade as Langfuse;
 
 it('creates a nested trace hierarchy for the RAG pipeline', function () {
+    if (! config('services.openai.api_key')) {
+        $this->markTestSkipped('OpenAI API key not configured');
+    }
+
     $fake = Langfuse::fake();
-    RagAnswerer::fake(['Langfuse provides observability with auto-tracing and zero configuration.']);
 
     $this->artisan('example:rag-pipeline')->assertSuccessful();
 

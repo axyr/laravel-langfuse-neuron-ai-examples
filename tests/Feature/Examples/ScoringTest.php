@@ -2,12 +2,14 @@
 
 declare(strict_types=1);
 
-use App\Ai\Agents\Summarizer;
 use Axyr\Langfuse\LangfuseFacade as Langfuse;
 
 it('creates a trace with scores attached', function () {
+    if (! config('services.openai.api_key')) {
+        $this->markTestSkipped('OpenAI API key not configured');
+    }
+
     $fake = Langfuse::fake();
-    Summarizer::fake(['RAG enhances LLM responses by retrieving relevant documents.']);
 
     $this->artisan('example:scoring')->assertSuccessful();
 

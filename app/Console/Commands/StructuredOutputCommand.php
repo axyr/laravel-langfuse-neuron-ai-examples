@@ -37,7 +37,7 @@ class StructuredOutputCommand extends Command
             $number = $index + 1;
             $this->line("  <fg=gray>Review {$number}: {$review}</>");
 
-            $response = $agent->chat(new UserMessage("Analyze the sentiment of this review: {$review}"))->getMessage()->getContent();
+            $response = $agent->chat(new UserMessage("Analyze the sentiment of this review: {$review}"))->getMessage()->getContent() ?? '{}';
 
             // Parse JSON response
             $result = json_decode($response, true, 512, JSON_THROW_ON_ERROR);

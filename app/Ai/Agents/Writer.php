@@ -11,13 +11,14 @@ use NeuronAI\Providers\AIProviderInterface;
 class Writer extends Agent
 {
     public function __construct(
-        private readonly string $researchNotes,
+        private readonly ?string $researchNotes,
     ) {
         parent::__construct();
     }
 
     protected function provider(): AIProviderInterface
     {
+        /** @var AIProviderInterface */
         return AIProvider::driver('anthropic');
     }
 

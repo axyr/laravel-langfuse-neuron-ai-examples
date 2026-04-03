@@ -33,7 +33,7 @@ class StreamingCommand extends Command
 
         // Note: Neuron AI streaming implementation may differ
         // For now, we'll get the complete response
-        $response = (new StoryTeller())->chat(new UserMessage($prompt))->getMessage()->getContent();
+        $response = (new StoryTeller())->chat(new UserMessage($prompt))->getMessage()->getContent() ?? '';
 
         // Simulate streaming output
         $this->output->write($response);

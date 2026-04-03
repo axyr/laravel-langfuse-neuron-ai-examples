@@ -14,6 +14,7 @@ class ResearchAssistant extends Agent
 {
     protected function provider(): AIProviderInterface
     {
+        /** @var AIProviderInterface */
         return AIProvider::driver('anthropic');
     }
 
